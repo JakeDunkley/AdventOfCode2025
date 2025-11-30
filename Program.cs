@@ -4,6 +4,7 @@ public class Program
 {
     public static void Main()
     {
-        Console.WriteLine("Merry Codemas!!!");
+        Day00 day = new();
+        day.Run();
     }
 }
