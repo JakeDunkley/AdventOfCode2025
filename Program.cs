@@ -4,7 +4,7 @@ public class Program
 {
     public static void Main()
     {
-        Day00 day = new();
+        Day01 day = new();
         day.Run();
     }
 }
