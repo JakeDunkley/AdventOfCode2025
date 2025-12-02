@@ -30,5 +30,43 @@ public class Day01 : IDay
         }
 
         DisplayResult(numTimesAtZero, part: 1);
+
+        /*
+            Part02
+        */
+
+        int stoppedAt = 50;
+        int numTimesPassedZero = 0;
+
+        foreach (string line in lines)
+        {
+            int delta = Convert.ToInt32(line[1..]);
+
+            if (delta > 100)
+            {
+                numTimesPassedZero += delta / 100;
+                delta %= 100;
+            }
+
+            delta *= line[0] == 'L' ? -1 : 1;
+
+            int newStoppedPosition = stoppedAt + delta;
+
+            if (newStoppedPosition < 0)
+            {
+                newStoppedPosition = 100 + newStoppedPosition;
+            }
+
+            newStoppedPosition %= 100;
+
+            if (newStoppedPosition == 0 || (stoppedAt != 0 && (line[0] == 'L' && newStoppedPosition >= stoppedAt) || (line[0] == 'R' && newStoppedPosition <= stoppedAt)))
+            {
+                numTimesPassedZero += 1;
+            }
+
+            stoppedAt = newStoppedPosition;
+        }
+
+        DisplayResult(numTimesPassedZero, part: 2);
     }
 }
